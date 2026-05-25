@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Organizer Dashboard</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        /* Header and Navigation */
+        header {
+            background-color: #333;
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 1rem;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s ease;
+        }
+        nav ul li a:hover,
+        nav ul li a.active {
+            background-color: #333;
+            border-radius: 5px;
+        }
+        /* Main Content */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        .card {
+            background-color: #fff;
+            margin: 1rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .card h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .card p {
+            color: #666;
+        }
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #333;
+            color: #fff;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            .container {
+                width: 100%;
+                margin: 1rem 0;
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/event-organizer/{{username}}" class="active">Dashboard</a></li>
+                <li><a href="/event-organizer/create-event/{{username}}">Create Event</a></li>
+                <li><a href="/event-organizer/manage-events/{{username}}">Manage Events</a></li>
+                <li><a href="/event-organizer/profile/{{username}}">Profile</a></li>
+                <li><a href="/">Logout</a></li>
+            </ul>
+        </nav>s
+    </header>
+    <main class="container">
+        <h1>Welcome, Event Organizer!</h1>
+        <div class="card">
+            <h2>Upcoming Events</h2>
+            {% if events %}
+                {% for event in events %}
+                    <p> {{event['name']}} {{event['date']}} {{event['time_from']}} - {{event['time_to']}} </p>
+                {% endfor %}
+            {% else %}
+                <p>No events scheduled. <a href="/event-organizer/create-event">Create a new event</a>.</p>
+            {% endif %}
+        </div>
+       
+    </main>
+    <footer>
+        <p>&copy; 2025 Event Management System. All rights reserved.</p>
+    </footer>
+</body>
+</html>

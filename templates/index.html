@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management System</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    
+</head>
+<body >
+    <header>
+        <h1>Welcome to Eman Event Centre</h1>
+        <nav>
+            <a href="/login">Login</a>
+            <a href="/register">Register</a>
+            <a href="/event-organizer/login">Event Organizer</a>
+            <a href="/events?email={{email}}">Events</a>
+        </nav>
+    </header>
+
+    <section id="upcoming-events">
+        <h2>Upcoming Events</h2>
+        <div class="upcoming-container">
+            <div class="upcoming-event">
+                <a href="#" onclick="registerEvent('event1', 'Tech Conference', '../pictures/tech_conference.jpg')">
+                    <img src="{{url_for('static', filename='img/event.png')}}" alt="Tech Conference">
+                    <div class="event-overlay">
+                        <h3>Tech Conference</h3>
+                        <p>April 15, 2025</p>
+                    </div>
+                </a>
+            </div>
+    
+            <div class="upcoming-event">
+                <a href="#" onclick="registerEvent('event2', 'Music Festival', '../pictures/music_festival.jpg')">
+                    <img src="{{url_for('static', filename='img/music.png')}}" alt="Music Festival">
+                    <div class="event-overlay">
+                        <h3>Music Festival</h3>
+                        <p>June 20, 2025</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+
+
+</body>
+</html>

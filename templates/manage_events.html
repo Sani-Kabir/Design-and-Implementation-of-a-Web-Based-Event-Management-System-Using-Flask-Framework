@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Events</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            padding: 1rem;
+            text-align: center;
+            color: white;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 1rem;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .container {
+            padding: 2rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        button {
+            background-color: #333;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Manage Events</h1>
+        <nav>
+            <ul>
+                <li><a href="/event-organizer/dashboard/{{username}}" class="active">Dashboard</a></li>
+                <li><a href="/event-organizer/create-event/{{username}}">Create Event</a></li>
+                <li><a href="/event-organizer/manage-events/{{username}}">Manage Events</a></li>
+                <li><a href="/event-organizer/profile/{{username}}">Profile</a></li>
+                <li><a href="/">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Event Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Location</th>
+                    <th>No. of Participants</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example Event Row -->
+                {% for event in events %}
+                    <tr>
+                        <td>{{event['name']}}</td>
+                        <td>{{event['date']}}</td>
+                        <td>{{event['time_from']}} - {{event['time_to']}}</td>
+                        <td>{{event['location']}}</td>
+                        <td>{{no_of_reg_per_event[event['id']]}}</td>
+                        <td>
+                            <a href="/event-organizer/edit-event/{{username}}/{{event['id']}}">Edit</a>
+                            <a href="/event-organizer/manage-events/{{username}}?delid={{event['id']}}">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <!-- Additional event rows go here -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

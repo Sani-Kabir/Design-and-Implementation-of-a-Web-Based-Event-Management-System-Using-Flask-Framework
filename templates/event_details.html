@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details | Event Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 60%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        h2 {
+            margin-top: 10px;
+        }
+        .event-info {
+            text-align: left;
+            margin-top: 15px;
+        }
+        .register-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        .register-btn:hover {
+            background: #0056b3;
+        }
+        header {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <h1> Event details</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/dashboard/{{user}}">Dashboard</a>
+            <a href="/events?user={{user}}">Events</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <img src="{{url_for('static', filename='img/AI.png')}}" style="width: 300px;" alt="Event Image">
+        <h2>{{event['name']}}</h2>
+        <p class="event-info"><strong>Date:</strong> {{event['date']}}</p>
+        <p class="event-info"><strong>Time:</strong> {{event['time_from']}} - {{event['time_to']}}</p>
+        <p class="event-info"><strong>Location:</strong> {{event['location']}}</p>
+        <p class="event-info">{{event['description']}}</p>
+        <a href="/view-event/{{event['id']}}?register_event={{user}}" class="register-btn">Register Now</a>
+    </div>
+    {% if statuscode %}
+    <script>
+        alert('{{statuscode}}')
+    </script>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Event Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .navbar {
+            background: #333;
+            padding: 15px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .dashboard-container {
+            width: 80%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .events-list, .notifications {
+            list-style: none;
+            padding: 0;
+        }
+        .events-list li, .notifications li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .events-list li:last-child, .notifications li:last-child {
+            border-bottom: none;
+        }
+        .profile {
+            text-align: right;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div>
+            <a href="/">Home</a>
+            <a href="#">Dashboard</a>
+            <a href="/events?user={{user}}">Events</a>
+            
+            <a href="/login">Logout</a>
+        </div>
+        <div class="profile">
+            <span>
+                Welcome,
+                {% if user %}
+                {{user}}
+                {% else %}
+                user
+                {% endif %}
+            </span>
+        </div>
+    </div>
+    
+    <div class="dashboard-container">
+        <h2>Dashboard</h2>
+        
+        <div class="section">
+            <h3>Upcoming Events</h3>
+            {% if events %}
+            <ul class="events-list">
+                {% for event in events %}
+                <li>{{event['name']}} - {{event['date']}} & {{event['time_from']}} - {{event['time_to']}}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <em>No Events</em>
+            {% endif %}
+        </div>
+        
+        <div class="section">
+            <h3>Registered Events</h3>
+            {% if reg_events %}
+            <ul class="events-list">
+                {% for event in reg_events %}
+                <li>{{event['name']}} - {{event['date']}} & {{event['time_from']}} - {{event['time_to']}}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <em>No Registered Events</em>
+            {% endif %}
+        </div>
+        
+        <div class="section">
+            <h3>Notifications</h3>
+            <ul class="notifications">
+                {% if notifications %}
+                    <li>Notification 1</li>
+                    <li>Notification 2</li>
+                {% else %}
+                    <em>No Notifications</em>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Dummy registered events (Later, we will fetch from Flask backend)
+        const registeredEvents = [
+            { name: "Music Concert", date: "2025-03-20" },
+            { name: "Tech Conference", date: "2025-03-25" }
+        ];
+
+        const eventList = document.getElementById("eventList");
+        const notificationBox = document.getElementById("eventNotification");
+        const today = new Date().toISOString().split("T")[0];
+
+        registeredEvents.forEach(event => {
+            const eventItem = document.createElement("li");
+            eventItem.textContent = `${event.name} - ${event.date}`;
+            eventList.appendChild(eventItem);
+
+            // Show notification if the event is upcoming (within 3 days)
+            const eventDate = new Date(event.date);
+            const diffDays = (eventDate - new Date()) / (1000 * 60 * 60 * 24);
+            if (diffDays <= 3) {
+                notificationBox.style.display = "block";
+                setTimeout(() => {
+                    alert(`Reminder: ${event.name} is happening soon on ${event.date}!`);
+                }, 2000);
+            }
+        });
+    </script>
+
+
+</body>
+</html>

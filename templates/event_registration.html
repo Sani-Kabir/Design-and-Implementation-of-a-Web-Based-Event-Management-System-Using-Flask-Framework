@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register for Event | Event Management System</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 50%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        input {
+            width: 96%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .register-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .register-btn:hover {
+            background: #0056b3;
+        }
+        .message {
+            margin-top: 15px;
+            color: green;
+            font-weight: bold;
+        }
+
+        header {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Register Events</h1>
+        <nav>
+            <a href="/index">Home</a>
+            <a href="/events?email={{email}}">Events</a>
+            {% if email %}
+            <a href="/login">Logout</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Register for an Event</h2>
+        <form id="registrationForm" method="post" action="/register-event">
+            <input type="text" name="fname" id="name" placeholder="Your Name" required>
+            <input type="email" name="email" id="email" placeholder="Your Email" required>
+            <select id="eventSelect" name="event" required>
+                <option value="">Select an Event</option>
+                {% for event in eventlist %}
+                <option value="{{event['id']}}">{{event['event']}}</option>
+                {% endfor %}
+                
+            </select>
+            <input type="time" name="time" id="time" placeholder="Time of Event" required>
+            <input type="date" name="date" id="date" placeholder="Date of Event" required>
+            <button type="submit" class="register-btn">Register</button>
+        </form>
+        {% if status != '' %}
+        <p class="message" id="confirmationMessage">{{status}}</p>
+        {% endif %}
+    </div>
+    
+    <script>
+       
+    </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            padding: 1rem;
+            text-align: center;
+            color: white;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 1rem;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .container {
+            padding: 2rem;
+        }
+        form {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        form div {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Create Event</h1>
+        <nav>
+            <ul>
+                <li><a href="/event-organizer/dashboard/{{username}}" class="active">Dashboard</a></li>
+                <li><a href="/event-organizer/create-event/{{username}}">Create Event</a></li>
+                <li><a href="/event-organizer/manage-events/{{username}}">Manage Events</a></li>
+                <li><a href="/event-organizer/profile/{{username}}">Profile</a></li>
+                <li><a href="/">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <form action="#" method="post">
+            <div>
+                <label for="event_name">Event Name:</label>
+                <input type="text" id="event_name" name="event_name" required>
+            </div>
+            <div>
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div>
+                <label for="date">Time From:</label>
+                <input type="time" id="time-from" name="time-from" required>
+            </div>
+            <div>
+                <label for="date">Time To:</label>
+                <input type="time" id="time-to" name="time-to" required>
+            </div>
+            <div>
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" required>
+            </div>
+            <div>
+                <label for="location">Image:</label>
+                <input type="file" id="image" name="image" required>
+            </div>
+            <div>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="5" required></textarea>
+            </div>
+            <button type="submit">Create Event</button>
+        </form>
+    </div>
+</body>
+</html>
