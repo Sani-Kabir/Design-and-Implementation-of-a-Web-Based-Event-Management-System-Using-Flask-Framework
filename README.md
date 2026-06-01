@@ -10,11 +10,11 @@
 - Modular Flask backend structure
 - Academic research-based development
 - Real-world problem-solving approach
-# Intelligent Event Management System
+# Event Management System
 
 ## 📌 Overview
 
-The Intelligent Event Management System is a web-based application developed using the Flask framework. It is designed to simplify event creation, management, registration, and tracking through a centralized platform.
+The Event Management System is a web-based application developed using the Flask framework. It is designed to simplify event creation, management, registration, and tracking through a centralized platform.
 
 This project was developed as part of an undergraduate Computer Science research project at Bayero University Kano, Nigeria.
 
