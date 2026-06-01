@@ -62,7 +62,7 @@ This project was developed as part of an undergraduate Computer Science research
 ---
 
 ## 📂 Project Structure
-intelligent-event-management-system/
+event-management-system/
 │
 ├── app.py
 ├── static/
